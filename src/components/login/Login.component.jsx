@@ -4,7 +4,7 @@ import { useStateValue } from '../../stateprovider';
 import './login.styles.scss';
 
 function Login() {
-    const [{}, dispatch] = useStateValue();
+    const [, dispatch] = useStateValue();
 
     const signIn = () => {
         auth.signInWithPopup(provider)

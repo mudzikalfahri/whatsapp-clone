@@ -1,5 +1,5 @@
 import { Avatar, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './chatbody.styles.scss';
 import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
@@ -20,7 +20,11 @@ function ChatBody() {
     const {groupId} = useParams();
     const [groupName, setGroupName] = useState("");
     const [{user}] = useStateValue();
-    
+    const messageEndRef = useRef();
+
+    useEffect(() => {
+        messageEndRef.current.scrollIntoView({behavior:'smooth'});
+    },[messages]);
 
     useEffect(() => {
         if(groupId) {
@@ -61,7 +65,7 @@ function ChatBody() {
                 {messages.map(message => (
                     <ChatBubble key={message.id} message={message.message} id={message.id} name={message.name} displayName={user.displayName}/>
                 ))}
-                
+                <div ref={messageEndRef}></div>
             </div>
 
             <div className="chat-input">

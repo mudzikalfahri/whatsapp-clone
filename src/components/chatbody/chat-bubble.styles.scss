@@ -8,6 +8,13 @@
     margin: 20px;
     font-size: 14px;
     box-shadow: 0px 1px 0px #A6A6A6;
+    animation-name:show-up;
+    animation-timing-function: linear;
+    animation-duration: 0.2s;
+    @keyframes show-up{
+        0%{opacity: 0; transform: translateY(30px);}
+        100%{opacity: 1; transform: translateY(0px);}
+    }
     .name{
         font-weight: 500;
         color: lightskyblue;

@@ -8,7 +8,7 @@ function SideChat({name, id}){
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        database.collection('groups').doc(id).collection('messages').orderBy('timestamp', 'asc').onSnapshot(
+        database.collection('groups').doc(id).collection('messages').orderBy('timestamp', 'desc').onSnapshot(
         (snapshot) => setMessage(snapshot.docs.map(doc => doc.data())))
     }, [id])
 
