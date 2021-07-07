@@ -1,0 +1,25 @@
+.chat-bubble{
+    width: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 10px;
+    padding-right: 20px;
+    margin: 20px;
+    font-size: 14px;
+    box-shadow: 0px 1px 0px #A6A6A6;
+    .name{
+        font-weight: 500;
+        color: lightskyblue;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+}
+.ourself{
+    padding-left: 10px;
+    margin-left: auto;
+    background-color: #CCF9BD;
+    .name{
+        display: none;
+    }
+}

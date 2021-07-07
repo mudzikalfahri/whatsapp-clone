@@ -5,14 +5,15 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatIcon from '@material-ui/icons/Chat';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
 import { useState } from 'react';
 import database from '../../firebase';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../../stateprovider';
+import SideChat from './sidechat.component';
 
 function SideBar() {
-
+    const [{ user }] = useStateValue();
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -29,7 +30,7 @@ function SideBar() {
         <div className='sidebar'>
             {/* header */}
             <div className="header">
-                <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <Avatar alt="Remy Sharp" src={user.photoURL} />
                 <div className="links">
                     <IconButton>
                         <DonutLargeIcon style={{fontSize: 20, color:'#A6A6A6'}}/>    
@@ -56,14 +57,8 @@ function SideBar() {
             {/* list-body */}
             <div className="list">
                 {groups.map((group) => (
-                    <Link to={`/groups/${group.id}`}>    
-                        <div className="chat-thumbnail" key={group.id}>
-                            <Avatar className='avatar'><PeopleRoundedIcon/></Avatar>
-                            <div className="thumbnail-name">
-                                <h3>{group.data.name}</h3>
-                                <p>Pak budi: sangar</p>
-                            </div>
-                        </div> 
+                    <Link to={`/groups/${group.id}`}>
+                        <SideChat key={group.id} name={group.data.name} id={group.id}/>    
                     </Link>
                 ))}
                 
